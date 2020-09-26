@@ -4,7 +4,7 @@ function Feed() {
     return (
         <div>
 
-            <h2>Home page</h2>
+            <h2>This i new page</h2>
 
            {/* Header */}
 
