@@ -1,34 +1,45 @@
-import React from 'react'
-import './Feed.css'
-import Tweetbox from './TweetBox'
-import Post from './Post'
+import React,{useEffect, useState} from "react";
+import "./Feed.css";
+import Tweetbox from "./TweetBox";
+import Post from "./Post";
+import db from './firebase'
+
 function Feed() {
-    return (
-        <div className="feed">
+  const [posts, setPost] = useState([]);
 
 
-          {/* Header */}
-          <div className="feed_header"><h2>Home page</h2> </div>
+  useEffect(() =>{
+
+      db.collection('post').onSnapshot(snapshot => (
+
+        setPost(snapshot.docs.map(doc => doc.data()))
+      ))
+
+  }, [name,age])
 
 
-           {/* Tweetbox */}
-         <Tweetbox />
+  return (
+    <div className="feed">
+      {/* Header */}
+      <div className="feed_header">
+        <h2>Home page</h2>{" "}
+      </div>
 
-           {/* Post */}
+      {/* Tweetbox */}
+      <Tweetbox />
 
-           <Post
-            key={post.text}
-            displayName={post.displayName}
-            username={post.username}
-            verified={post.verified}
-            text={post.text}
-            avatar={post.avatar}
-            image={post.image}
-          />
-       
-       
-        </div>
-    );
+      {/* Post */}
+
+      <Post
+        displayName="Malik"
+        username="jdjd"
+        verified={true}
+        text="sjjs"
+        avatar="https://media.giphy.com/media/5UBoxtyNy0NRNhX1HS/giphy.gif"
+        image="https://media.giphy.com/media/5UBoxtyNy0NRNhX1HS/giphy.gif"
+      />
+    </div>
+  );
 }
 
-export default Feed
+export default Feed;

@@ -7,13 +7,13 @@ import RepeatIcon from '@material-ui/icons/Repeat'
 import FavoriteBorderIconfontSize from '@material-ui/icons/Favorite'
 import PublishIcon from '@material-ui/icons/Publish'
 
-function Post(
+function Post({
     displayName,
     username,
     verified,
     text,
     image,
-    avatar
+    avatar}
 ) {
     return (
         <div className="post">
