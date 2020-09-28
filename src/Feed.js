@@ -1,43 +1,48 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import "./Feed.css";
 import Tweetbox from "./TweetBox";
 import Post from "./Post";
-import db from './firebase'
+import db from "./firebase";
 
 function Feed() {
-  const [posts, setPost] = useState([]);
+  const [posts, setPosts] = useState([]);
 
-
-  useEffect(() =>{
-
-      db.collection('post').onSnapshot(snapshot => (
-
-        setPost(snapshot.docs.map(doc => doc.data()))
-      ))
-
-  }, [name,age])
-
+  useEffect(() => {
+    db.collection("posts").onSnapshot((snapshot) =>
+      setPosts(snapshot.docs.map((doc) => doc.data()))
+    );
+  }, []);
 
   return (
     <div className="feed">
+
+
       {/* Header */}
       <div className="feed_header">
         <h2>Home page</h2>{" "}
       </div>
 
+
+
+
       {/* Tweetbox */}
       <Tweetbox />
 
+
+
+
       {/* Post */}
 
-      <Post
-        displayName="Malik"
-        username="jdjd"
-        verified={true}
-        text="sjjs"
-        avatar="https://media.giphy.com/media/5UBoxtyNy0NRNhX1HS/giphy.gif"
-        image="https://media.giphy.com/media/5UBoxtyNy0NRNhX1HS/giphy.gif"
-      />
+      {posts.map(post => (
+        <Post
+          displayName={post.displayName}
+          username={post.username}
+          verified={post.verified}
+          text={post.text}
+          avatar={post.avatar}
+          image={post.image}
+        />
+      ))}
     </div>
   );
 }
