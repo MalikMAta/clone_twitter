@@ -1,18 +1,24 @@
 import React from 'react'
+import './Feed.css'
+import Tweetbox from './TweetBox'
 
 function Feed() {
     return (
-        <div>
+        <div className="feed">
 
-            <h2>This i new page</h2>
 
-           {/* Header */}
+          {/* Header */}
+          <div className="feed_header"><h2>Home page</h2> </div>
+
 
            {/* Tweetbox */}
+         <Tweetbox />
 
            {/* Post */}
+
+
         </div>
-    )
+    );
 }
 
 export default Feed
